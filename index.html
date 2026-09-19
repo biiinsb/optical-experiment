@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f2f6fb">
+  <title>렌즈 광학 가상실험실</title>
+  <meta name="description" content="볼록렌즈와 오목렌즈의 3대 주요 광선, 초점과 상 형성을 탐구하는 인터랙티브 가상실험실">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307111f'/%3E%3Cpath d='M26 9c9 7 9 39 0 46h12c-9-7-9-39 0-46z' fill='%2365d6ff' stroke='%23fff' stroke-width='2'/%3E%3Cpath d='M5 22h20M39 38h20' stroke='%23ffce59' stroke-width='4'/%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#07111f;--panel:#0c1a2c;--panel2:#10223a;--line:#203653;--text:#edf7ff;--muted:#9cb2c9;--cyan:#65d6ff;--yellow:#ffce59;--pink:#ff6f91;--green:#71e6af;--purple:#b49cff;--shadow:0 16px 44px rgba(0,0,0,.28)}
+    *{box-sizing:border-box} html,body{margin:0;min-height:100%;background:radial-gradient(circle at 70% -10%,#143151 0,transparent 38%),var(--bg);color:var(--text);font-family:Pretendard,"Noto Sans KR",system-ui,sans-serif}
+    body{padding:22px}.app{max-width:1500px;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px}.brandmark{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#153757,#0b1728);display:grid;place-items:center;border:1px solid #294666;box-shadow:var(--shadow)}.brandmark svg{width:27px}.title{font-size:1.2rem;font-weight:800;letter-spacing:-.03em}.subtitle{font-size:.82rem;color:var(--muted);margin-top:3px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+    button,.seg label,.check{font:inherit}.btn{border:1px solid var(--line);color:var(--text);background:#0d1e33;border-radius:10px;padding:9px 13px;cursor:pointer;font-weight:700}.btn:hover{border-color:#43688f}.btn.primary{background:var(--cyan);border-color:var(--cyan);color:#07111f}.layout{display:grid;grid-template-columns:270px minmax(0,1fr) 280px;gap:14px;align-items:start}.panel,.stage-card{background:linear-gradient(180deg,rgba(16,34,58,.97),rgba(9,23,40,.97));border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.panel{padding:17px}.panel h2{font-size:.92rem;margin:0 0 14px;letter-spacing:.02em}.group{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}.group:first-of-type{border:0;padding-top:0;margin-top:0}.labelrow{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px;font-size:.86rem}.value{font-variant-numeric:tabular-nums;color:var(--cyan);font-weight:800}.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#071524;padding:5px;border-radius:12px}.seg input{position:absolute;opacity:0;pointer-events:none}.seg label{text-align:center;padding:8px 7px;border-radius:8px;color:var(--muted);cursor:pointer;font-size:.82rem;font-weight:700}.seg input:checked+label{background:#1b3957;color:white;box-shadow:0 2px 8px #0005}.range{width:100%;accent-color:var(--cyan);cursor:pointer}.hint{font-size:.74rem;line-height:1.55;color:var(--muted);margin-top:7px}.checks{display:grid;gap:8px}.check{display:flex;align-items:center;gap:9px;color:#d8e8f7;font-size:.83rem;cursor:pointer}.check input{width:17px;height:17px;accent-color:var(--cyan)}.dot{width:9px;height:9px;border-radius:50%;flex:none}.stage-card{min-width:0;overflow:hidden}.stage-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--line);gap:10px}.stage-title{font-size:.88rem;font-weight:800}.legend{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.72rem;flex-wrap:wrap}.legend span{display:flex;align-items:center;gap:5px}.canvas-wrap{position:relative;height:610px;min-height:430px}.canvas-wrap canvas{width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}.drag-tip{position:absolute;left:14px;bottom:12px;padding:7px 10px;border-radius:9px;background:#07111fcc;border:1px solid #294361;color:#bcd0e3;font-size:.72rem;pointer-events:none}.readout{display:grid;gap:12px}.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metric{background:#081729;border:1px solid var(--line);border-radius:12px;padding:11px}.metric .k{font-size:.7rem;color:var(--muted);margin-bottom:6px}.metric .v{font-size:1rem;font-weight:850;font-variant-numeric:tabular-nums}.result{border:1px solid #2c4e6b;background:linear-gradient(140deg,#102d48,#0b1c31);border-radius:14px;padding:14px}.result .eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan);font-weight:800}.result h3{font-size:1.15rem;margin:7px 0 5px}.result p{margin:0;color:#b9cbe0;font-size:.82rem;line-height:1.55}.formula{background:#071524;border:1px solid var(--line);border-radius:12px;padding:12px;font-family:"JetBrains Mono",Consolas,monospace;font-size:.79rem;line-height:1.75;color:#d8e6f4}.status-list{display:grid;gap:8px}.status{display:flex;justify-content:space-between;gap:10px;font-size:.8rem;padding-bottom:8px;border-bottom:1px dashed #27405d}.status:last-child{border:0;padding-bottom:0}.status span:first-child{color:var(--muted)}.status b{text-align:right}.footer-note{margin-top:14px;color:#718ba5;font-size:.72rem;text-align:center}
+    @media(max-width:1100px){.layout{grid-template-columns:240px minmax(0,1fr)}.readout{grid-column:1/-1;grid-template-columns:1.15fr 1fr 1fr}.readout .panel{height:100%}.canvas-wrap{height:560px}}
+    @media(max-width:760px){body{padding:12px}.topbar{align-items:flex-start}.subtitle{display:none}.layout{grid-template-columns:1fr}.controls{order:2}.stage-card{order:1}.readout{order:3;grid-template-columns:1fr}.canvas-wrap{height:470px}.stage-head{align-items:flex-start;flex-direction:column}.legend{gap:8px}.top-actions .btn:not(.primary){display:none}}
+    /* Bright teaching surface with high-contrast controls. */
+    :root{--bg:#f2f6fb;--panel:#fff;--panel2:#eef5fc;--line:#ccd9e6;--text:#172b43;--muted:#52677d;--cyan:#0869b2;--yellow:#b86b00;--pink:#c42e55;--green:#087c52;--purple:#7141bd;--shadow:0 5px 20px #2443660b}
+    html,body{background:var(--bg)}.panel,.stage-card{background:#fff}.brandmark{background:#e2f1ff;border-color:#b0cde6}.brandmark path{fill:#0869b21a;stroke:#0869b2}
+    .btn{background:#fff}.btn.primary{color:#fff}.seg{background:#edf2f7}.seg input:checked+label{background:#0869b2;color:#fff;box-shadow:none}
+    .check{color:var(--text)}.metric,.formula{background:#f4f8fc;color:var(--text)}.result{background:#edf6ff;border-color:#bdd6ef}.result p{color:#364f69}
+    .formula div[style]{color:#52677d!important}.status{border-color:#c9d8e6}.drag-tip{background:#fffffff2;border-color:#c6d7e8;color:#334d68;bottom:8px}.footer-note{color:#52677d}
+    .labelrow,.check,.seg label,.status,.result p,.formula{font-size:.875rem}.metric .k,.legend,.hint{font-size:.8rem}
+    .layout{grid-template-columns:245px minmax(0,1fr) 250px}.canvas-wrap{height:640px}
+    @media(max-width:1200px){.layout{grid-template-columns:235px minmax(0,1fr)}.readout{grid-column:1/-1;grid-template-columns:1fr 1fr 1fr}}
+    @media(max-width:760px){.layout{grid-template-columns:1fr}.readout{grid-template-columns:1fr}.canvas-wrap{height:530px}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brandmark" aria-hidden="true"><svg viewBox="0 0 40 48"><path d="M12 3c12 9 12 33 0 42h16c-12-9-12-33 0-42z" fill="#65d6ff55" stroke="#65d6ff" stroke-width="2"/></svg></div><div><div class="title">렌즈 광학 가상실험실</div><div class="subtitle">주요 광선을 직접 조작하며 상의 위치와 성질을 확인하세요.</div></div></div>
+    <div class="top-actions"><button class="btn" id="exampleBtn">대표 조건</button><button class="btn primary" id="resetBtn">초기화</button></div>
+  </header>
+  <section class="layout">
+    <aside class="panel controls" aria-label="실험 조절 패널">
+      <h2>실험 조건</h2>
+      <div class="group"><div class="labelrow"><span>렌즈 종류</span></div><div class="seg"><input type="radio" id="convex" name="lens" value="convex" checked><label for="convex">볼록렌즈</label><input type="radio" id="concave" name="lens" value="concave"><label for="concave">오목렌즈</label></div></div>
+      <div class="group"><div class="labelrow"><label for="focal">초점거리 |f|</label><span class="value" id="focalVal">12.0 cm</span></div><input class="range" id="focal" type="range" min="5" max="25" step="0.5" value="12"></div>
+      <div class="group"><div class="labelrow"><label for="objectDistance">물체 거리 dₒ</label><span class="value" id="objectDistanceVal">30.0 cm</span></div><input class="range" id="objectDistance" type="range" min="6" max="60" step="0.5" value="30"><div class="hint">캔버스의 물체 화살표를 좌우로 끌어도 조절할 수 있습니다.</div></div>
+      <div class="group"><div class="labelrow"><label for="objectHeight">물체 높이 hₒ</label><span class="value" id="objectHeightVal">6.0 cm</span></div><input class="range" id="objectHeight" type="range" min="2" max="10" step="0.5" value="6"></div>
+      <div class="group"><div class="labelrow"><span>광선 표시</span></div><div class="checks">
+        <label class="check"><input id="ray1" type="checkbox" checked><span class="dot" style="background:var(--yellow)"></span>축과 평행한 광선</label>
+        <label class="check"><input id="ray2" type="checkbox" checked><span class="dot" style="background:var(--pink)"></span>렌즈 중심을 지나는 광선</label>
+        <label class="check"><input id="ray3" type="checkbox" checked><span class="dot" style="background:var(--green)"></span>물체 쪽 초점을 지나는 광선</label>
+        <label class="check"><input id="bundle" type="checkbox"><span class="dot" style="background:var(--purple)"></span>평행 광선 다발</label>
+      </div></div>
+    </aside>
+    <section class="stage-card" aria-label="렌즈 광선 실험 캔버스">
+      <div class="stage-head"><span class="stage-title">광선 작도</span><div class="legend"><span>가는 모눈 1 cm · 굵은 모눈 5 cm</span><span>점선 = 역방향 연장선</span></div></div>
+      <div class="canvas-wrap"><canvas id="labCanvas" aria-label="렌즈, 물체, 상, 광선 경로를 나타내는 광학 실험"></canvas><div class="drag-tip">↔ 물체를 드래그해 거리를 바꾸세요</div></div>
+    </section>
+    <aside class="readout" aria-label="계산 결과">
+      <section class="panel"><h2>측정값</h2><div class="metric-grid"><div class="metric"><div class="k">초점거리 f</div><div class="v" id="mF">+12.0 cm</div></div><div class="metric"><div class="k">물체거리 dₒ</div><div class="v" id="mDo">30.0 cm</div></div><div class="metric"><div class="k">상거리 dᵢ</div><div class="v" id="mDi">20.0 cm</div></div><div class="metric"><div class="k">배율 m</div><div class="v" id="mMag">−0.67</div></div></div></section>
+      <section class="panel"><h2>상의 성질</h2><div class="result"><div class="eyebrow" id="imageType">REAL IMAGE</div><h3 id="summary">도립 · 축소 · 실상</h3><p id="explain">굴절한 빛이 렌즈 오른쪽에서 실제로 만나 상이 생깁니다.</p></div><div class="status-list" style="margin-top:14px"><div class="status"><span>방향</span><b id="orientation">도립</b></div><div class="status"><span>크기</span><b id="sizeType">축소</b></div><div class="status"><span>위치</span><b id="positionText">F와 2F 사이</b></div></div></section>
+      <section class="panel"><h2>렌즈 방정식</h2><div class="formula"><div>1/f = 1/dₒ + 1/dᵢ</div><div id="formulaLine">1/12.0 = 1/30.0 + 1/20.0</div><div style="color:#8ea8c0">m = −dᵢ/dₒ</div></div><div class="footer-note">점선은 빛이 실제로 지나지 않는 역방향 연장선입니다.</div></section>
+    </aside>
+  </section>
+</main>
+<script>
+(() => {
+  const $=s=>document.querySelector(s), canvas=$('#labCanvas'), ctx=canvas.getContext('2d');
+  const state={lens:'convex',fAbs:12,do:30,ho:6,rays:[true,true,true],bundle:false,drag:false};
+  const els={focal:$('#focal'),do:$('#objectDistance'),ho:$('#objectHeight'),focalVal:$('#focalVal'),doVal:$('#objectDistanceVal'),hoVal:$('#objectHeightVal')};
+  const COLORS=['#b86b00','#c42e55','#087c52'];
+  function signed(n,d=1){return (n>=0?'+':'−')+Math.abs(n).toFixed(d)}
+  function calc(){const f=state.lens==='convex'?state.fAbs:-state.fAbs;let di=1/(1/f-1/state.do);if(!Number.isFinite(di))di=Infinity;return{f,di,m:Number.isFinite(di)?-di/state.do:-Infinity,hi:Number.isFinite(di)?(-di/state.do)*state.ho:-Infinity}}
+  function resize(){const r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0);draw()}
+  function geom(c){const w=canvas.clientWidth,h=canvas.clientHeight,cx=w*.5,plotBottom=h-172,cy=(40+plotBottom)/2;const scale=(w-72)/130;return{w,h,cx,cy,scale,plotBottom,x:v=>cx+v*scale,y:v=>cy-v*scale}}
+  function line(x1,y1,x2,y2,color,width=2,dash=[]){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore()}
+  function arrow(g,x,h,color,label,ghost=false){const px=g.x(x),base=g.y(0),top=g.y(h);ctx.save();ctx.globalAlpha=ghost?.68:1;ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(px,base);ctx.lineTo(px,top);ctx.stroke();const dir=h>=0?1:-1;ctx.beginPath();ctx.moveTo(px,top);ctx.lineTo(px-6,top+dir*11);ctx.lineTo(px+6,top+dir*11);ctx.closePath();ctx.fill();ctx.font='700 12px system-ui';ctx.textAlign='center';ctx.fillText(label,px,Math.max(58,Math.min(g.plotBottom-12,top+(h>=0?-15:22))));ctx.restore()}
+  function lens(g,c){const x=g.cx,top=48,bottom=g.plotBottom-8;ctx.save();ctx.fillStyle='#0869b216';ctx.strokeStyle='#0869b2';ctx.lineWidth=2;ctx.beginPath();if(state.lens==='convex'){ctx.moveTo(x,top);ctx.bezierCurveTo(x+24,top+45,x+24,bottom-45,x,bottom);ctx.bezierCurveTo(x-24,bottom-45,x-24,top+45,x,top)}else{ctx.moveTo(x-16,top);ctx.bezierCurveTo(x+6,top+45,x+6,bottom-45,x-16,bottom);ctx.lineTo(x+16,bottom);ctx.bezierCurveTo(x-6,bottom-45,x-6,top+45,x+16,top);ctx.closePath()}ctx.fill();ctx.stroke();ctx.restore();badge(g,state.lens==='convex'?'볼록렌즈':'오목렌즈',x,24,'#0869b2')}
+  function badge(g,text,x,y,color){ctx.save();ctx.font='600 13px system-ui';ctx.textAlign='center';const width=ctx.measureText(text).width+12;x=Math.max(width/2+4,Math.min(g.w-width/2-4,x));ctx.fillStyle='#ffffffee';ctx.fillRect(x-width/2,y-14,width,20);ctx.fillStyle=color;ctx.fillText(text,x,y);ctx.restore()}
+  function focus(g,c){[-2*c.f,-c.f,c.f,2*c.f].forEach((v,i)=>{const x=g.x(v);ctx.fillStyle='#0869b2';ctx.beginPath();ctx.arc(x,g.cy,i===1||i===2?4:2.5,0,Math.PI*2);ctx.fill();badge(g,['2F','F','F′','2F′'][i],x,g.cy+22,'#0869b2')})}
+  function rayToEdge(g,x0,y0,slope,color,dash=[]){const xe=slope>=0?g.w+20:g.w+20;const ye=y0+slope*(xe-x0);line(x0,y0,xe,ye,color,2,dash)}
+  function rays(g,c){const ox=g.x(-state.do),oy=g.y(state.ho),lx=g.cx,right=g.w+30;const fy=g.y(0);const drawRay=(a,b,color,dash=[])=>line(a[0],a[1],b[0],b[1],color,2,dash);
+    if(state.rays[0]){drawRay([ox,oy],[lx,oy],COLORS[0]);const targetX=g.x(c.f),targetY=fy,s=(targetY-oy)/(targetX-lx);drawRay([lx,oy],[right,oy+s*(right-lx)],COLORS[0]);if(c.di<0)drawRay([lx,oy],[g.x(c.di),g.y(c.hi)],'#64748b',1.6,[7,6])}
+    if(state.rays[1]){const s=(fy-oy)/(lx-ox);drawRay([ox,oy],[right,oy+s*(right-ox)],COLORS[1])}
+    if(state.rays[2]){const inFocusX=g.x(-c.f),den=inFocusX-ox;if(Math.abs(den)>1){const s=(fy-oy)/den,atLens=oy+s*(lx-ox);drawRay([ox,oy],[lx,atLens],COLORS[2]);drawRay([lx,atLens],[right,atLens],COLORS[2]);if(c.di<0)drawRay([lx,atLens],[g.x(c.di),g.y(c.hi)],'#64748b',1.6,[7,6])}}
+    if(state.bundle){[-7,-3.5,0,3.5,7].forEach((hh,i)=>{const y=g.y(hh);line(8,y,lx,y,'#7141bd99',1.25);const tx=g.x(c.f),s=(g.cy-y)/(tx-lx);line(lx,y,right,y+s*(right-lx),'#7141bd99',1.25);if(c.f<0)line(lx,y,g.x(c.f),g.cy,'#64748b88',1,[5,5])})}
+  }
+  function grid(g){
+    ctx.clearRect(0,0,g.w,g.h);ctx.fillStyle='#fff';ctx.fillRect(0,0,g.w,g.h);
+    const extent=Math.ceil(g.w/g.scale),vertical=Math.ceil(g.h/g.scale);
+    for(let v=-extent;v<=extent;v++){const x=g.x(v);if(x>=0&&x<=g.w)line(x,40,x,g.plotBottom,v%5===0?'#bacddd':'#e5edf4',v%5===0?1:.6)}
+    for(let v=-vertical;v<=vertical;v++){const y=g.y(v);if(y>=40&&y<=g.plotBottom)line(0,y,g.w,y,v%5===0?'#bacddd':'#e5edf4',v%5===0?1:.6)}
+    line(0,g.cy,g.w,g.cy,'#576f85',1.5);
+  }
+  function dimensions(g,c){
+    const ruler=g.plotBottom+14;ctx.fillStyle='#f6f9fc';ctx.fillRect(0,g.plotBottom,g.w,g.h-g.plotBottom);
+    line(12,ruler,g.w-12,ruler,'#69839b',1);
+    const tickStep=g.scale*10<34?20:10;
+    for(let v=-60;v<=60;v+=5){const x=g.x(v);line(x,ruler-4,x,ruler+(v%tickStep===0?6:3),'#69839b',1);if(v%tickStep===0)badge(g,String(v),x,ruler+22,'#465d74')}
+    function dim(value,y,label,color){
+      const finite=Number.isFinite(value),target=finite?g.x(value):g.w-16,end=Math.max(16,Math.min(g.w-16,target)),clipped=!finite||end!==target;
+      line(g.cx,y,end,y,color,1.8);[g.cx,end].forEach(x=>line(x,y-5,x,y+5,color,1.5));
+      line(end,g.cy+28,end,y,color+'66',1,[3,4]);
+      if(clipped){const dir=value<0?-1:1;line(end,y,end-dir*7,y-4,color,1.5);line(end,y,end-dir*7,y+4,color,1.5)}
+      badge(g,label+(clipped?' · 화면 밖':''),(g.cx+end)/2,y-7,color);
+    }
+    dim(-state.do,ruler+51,'물체 dₒ = '+state.do.toFixed(1)+' cm','#26394e');
+    dim(c.f,ruler+81,'초점 |f| = '+state.fAbs.toFixed(1)+' cm','#0869b2');
+    dim(c.di,ruler+111,'상 dᵢ = '+(Number.isFinite(c.di)?signed(c.di)+' cm':'∞'),'#7141bd');
+  }
+  function draw(){const c=calc(),g=geom(c);grid(g);ctx.save();ctx.beginPath();ctx.rect(0,40,g.w,g.plotBottom-40);ctx.clip();rays(g,c);lens(g,c);arrow(g,-state.do,state.ho,'#172b43','물체');if(Number.isFinite(c.di)&&g.x(c.di)>8&&g.x(c.di)<g.w-8)arrow(g,c.di,c.hi,'#7141bd',c.di>0?'실상':'허상',c.di<0);ctx.restore();focus(g,c);badge(g,state.lens==='convex'?'볼록렌즈':'오목렌즈',g.cx,24,'#0869b2');dimensions(g,c);update(c)}
+  function update(c){els.focalVal.textContent=state.fAbs.toFixed(1)+' cm';els.doVal.textContent=state.do.toFixed(1)+' cm';els.hoVal.textContent=state.ho.toFixed(1)+' cm';$('#mF').textContent=signed(c.f)+' cm';$('#mDo').textContent=state.do.toFixed(1)+' cm';$('#mDi').textContent=Number.isFinite(c.di)?signed(c.di)+' cm':'∞';$('#mMag').textContent=Number.isFinite(c.m)?signed(c.m,2):'−∞';
+    const atInfinity=!Number.isFinite(c.di),real=c.di>0,orient=c.m<0?'도립':'정립',size=atInfinity?'매우 확대':Math.abs(c.m)>1.02?'확대':Math.abs(c.m)<.98?'축소':'같은 크기';let pos='렌즈와 같은 쪽';if(atInfinity)pos='무한히 먼 곳';else if(real){const r=c.di/state.fAbs;pos=Math.abs(r-2)<.04?'2F 위치':r>2?'2F 바깥':r>1?'F와 2F 사이':'F 안쪽'}
+    $('#imageType').textContent=atInfinity?'IMAGE AT INFINITY':real?'REAL IMAGE':'VIRTUAL IMAGE';$('#summary').textContent=atInfinity?'평행 출사 · 무한원 상':orient+' · '+size+' · '+(real?'실상':'허상');$('#orientation').textContent=atInfinity?'경계 조건':orient;$('#sizeType').textContent=size;$('#positionText').textContent=pos;$('#explain').textContent=atInfinity?'물체가 초점에 있어 굴절한 광선이 서로 평행하게 나아갑니다.':real?'굴절한 빛이 렌즈 오른쪽에서 실제로 만나 상이 생깁니다.':'굴절한 빛의 역방향 연장선이 렌즈 왼쪽에서 만나는 것처럼 보입니다.';$('#formulaLine').textContent='1/'+c.f.toFixed(1)+' = 1/'+state.do.toFixed(1)+' + '+(Number.isFinite(c.di)?'1/'+c.di.toFixed(1):'0');}
+  els.focal.oninput=e=>{state.fAbs=+e.target.value;draw()};els.do.oninput=e=>{state.do=+e.target.value;draw()};els.ho.oninput=e=>{state.ho=+e.target.value;draw()};document.querySelectorAll('[name=lens]').forEach(r=>r.onchange=e=>{state.lens=e.target.value;draw()});['ray1','ray2','ray3'].forEach((id,i)=>$('#'+id).onchange=e=>{state.rays[i]=e.target.checked;draw()});$('#bundle').onchange=e=>{state.bundle=e.target.checked;draw()};
+  function pointerDo(e){const rect=canvas.getBoundingClientRect(),x=e.clientX-rect.left,c=calc(),g=geom(c);return Math.max(6,Math.min(60,(g.cx-x)/g.scale))}canvas.addEventListener('pointerdown',e=>{const c=calc(),g=geom(c),x=e.clientX-canvas.getBoundingClientRect().left;if(Math.abs(x-g.x(-state.do))<28){state.drag=true;canvas.setPointerCapture(e.pointerId)}});canvas.addEventListener('pointermove',e=>{if(!state.drag)return;state.do=Math.round(pointerDo(e)*2)/2;els.do.value=state.do;draw()});canvas.addEventListener('pointerup',()=>state.drag=false);canvas.addEventListener('pointercancel',()=>state.drag=false);
+  $('#resetBtn').onclick=()=>{Object.assign(state,{lens:'convex',fAbs:12,do:30,ho:6,rays:[true,true,true],bundle:false});$('#convex').checked=true;els.focal.value=12;els.do.value=30;els.ho.value=6;['ray1','ray2','ray3'].forEach(id=>$('#'+id).checked=true);$('#bundle').checked=false;draw()};$('#exampleBtn').onclick=()=>{state.lens='convex';state.fAbs=12;state.do=18;state.ho=5;$('#convex').checked=true;els.focal.value=12;els.do.value=18;els.ho.value=5;draw()};
+  function setExperiment(input){if(!input||!['convex','concave'].includes(input.lens))throw new Error('lens는 convex 또는 concave여야 합니다.');for(const k of ['focalLength','objectDistance','objectHeight'])if(typeof input[k]!=='number'||!Number.isFinite(input[k]))throw new Error(k+' 값이 필요합니다.');if(input.focalLength<5||input.focalLength>25||input.objectDistance<6||input.objectDistance>60||input.objectHeight<2||input.objectHeight>10)throw new Error('입력값이 조절 범위를 벗어났습니다.');state.lens=input.lens;state.fAbs=input.focalLength;state.do=input.objectDistance;state.ho=input.objectHeight;$('#'+input.lens).checked=true;els.focal.value=state.fAbs;els.do.value=state.do;els.ho.value=state.ho;draw();const c=calc();return{lens:state.lens,focalLength:c.f,objectDistance:state.do,imageDistance:Number.isFinite(c.di)?+c.di.toFixed(2):null,magnification:Number.isFinite(c.m)?+c.m.toFixed(2):null}}
+  const modelContext=document.modelContext;if(modelContext?.registerTool){const controller=new AbortController();try{void Promise.resolve(modelContext.registerTool({name:'configure_lens_experiment',title:'렌즈 실험 조건 설정',description:'렌즈 종류, 초점거리, 물체거리, 물체높이를 설정하고 계산된 상거리와 배율을 반환합니다.',inputSchema:{type:'object',properties:{lens:{type:'string',enum:['convex','concave']},focalLength:{type:'number',minimum:5,maximum:25},objectDistance:{type:'number',minimum:6,maximum:60},objectHeight:{type:'number',minimum:2,maximum:10}},required:['lens','focalLength','objectDistance','objectHeight'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:setExperiment},{signal:controller.signal})).catch(()=>{})}catch(e){}}
+  new ResizeObserver(resize).observe(canvas.parentElement);resize();
+})();
+</script>
+</body>
+</html>
